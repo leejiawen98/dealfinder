@@ -1,0 +1,37 @@
+ion-header {
+    height: 280px;
+    background-color: #0F4C81;
+    ion-searchbar {
+        border-radius: 20px;
+    }
+}
+
+.sub-headers {
+    padding-left: 8px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+ion-slides {
+    height: 70%;
+}
+
+#category-grid {
+    text-align: center;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.icon-label {
+    font-size: 15px;
+}
+
+.categoryButton {
+    background-color: transparent;
+}

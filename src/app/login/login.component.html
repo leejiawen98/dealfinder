@@ -1,0 +1,17 @@
+<h2>View All Customers</h2>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Customer 1</th>
+        <th>Customer 2</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{customer.id}}</td>
+          <td>{{customer.firstName}}</td>
+        </tr>
+    </tbody>
+  </table>
