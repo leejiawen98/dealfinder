@@ -14,8 +14,8 @@ export class Tab1Page {
 
   constructor() {}
 
-  alert() {
-    alert("Hello!");
+  moveToViewCategory() {
+    this.router.navigate(['/viewCategory'])
   }
 
   
