@@ -1,7 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Food
+<ion-header [translucent]="true" > 
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click))="ngOnDestroy()"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="width: 100%; position: absolute; left: 0; height: 0;">
+      {{category.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let subLeaf of catDeals; let i = index">
+    <ion-item-group>
+      <ion-item-divider color="primary">{{subLeaf.leafCategory.name}}</ion-item-divider>
+      <div *ngIf="subLeaf.existDeal == true">
+        <ion-list *ngFor="let deal of catDeals[i].dealsAvail; let j = index">
+          <ion-item (click) = "goToDeal(i,j)">
+            <ion-thumbnail slot="start">
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-thumbnail>
+            <ion-label>{{deal.dealName}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-item-group>
+<!-- 
+      <ion-list-header>
+        {{subLeaf.leafCategory.name}}
+      </ion-list-header>
+      <div *ngIf="subLeaf.existDeal == true">
+        <ion-list *ngFor="let deal of catDeals[i].dealsAvail; let j = index">
+            <ion-item>
+              <ion-label (click) = "goToDeal(i,j)">
+                <h2>{{deal.dealName}}</h2>
+              </ion-label>
+            </ion-item>
+        </ion-list>
+      </div> -->
+  </ion-list>
+
+</ion-content>
+

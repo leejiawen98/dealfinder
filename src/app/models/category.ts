@@ -8,7 +8,7 @@ export class Category {
 
     deals: Deal[] | undefined;
     subCategories: Category[] | undefined;
-    parentCateogory: Category | undefined;
+    parentCategory: Category | undefined;
 
     constructor(categoryId?: number, name?: string, description?: string) {
         this.categoryId = categoryId;

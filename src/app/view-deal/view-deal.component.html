@@ -1,0 +1,20 @@
+<ion-header [translucent]="true" > 
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click))="ngOnDestroy()"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="width: 100%; position: absolute; left: 0; height: 0;">
+      {{deal.dealName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+  <ion-button (click) = purchaseDeal() expand="full" color="secondary">Purchase</ion-button>
+</ion-toolbar>
+</ion-footer>

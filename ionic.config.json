@@ -1,5 +1,7 @@
 {
   "name": "DealFinder",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

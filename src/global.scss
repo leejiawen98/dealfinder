@@ -24,3 +24,17 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-title {
+    text-align: center;
+}
+
+.my-custom-modal-class   {
+    --backdrop-opacity: 0.9 !important;
+  
+    .modal-wrapper {
+      --height: 42% !important;
+      --width: 90% !important;
+      border-radius: 5px;
+    }
+  }

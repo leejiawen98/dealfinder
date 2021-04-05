@@ -16,7 +16,13 @@ export class CategoryService {
 
   baseUrl: string = "/api/Category";
 
-  constructor(private httpClient: HttpClient) { }
+  allLeafCategories: Category[];
+  leafCategories: Category[];
+
+  constructor(private httpClient: HttpClient) { 
+    this.allLeafCategories = new Array();
+    this.leafCategories = new Array();
+  }
 
   retrieveAllCategories(): Observable<Category[]>
   {		
@@ -57,6 +63,7 @@ export class CategoryService {
       catchError(this.handleError)
     );
   }
+
 
   
 

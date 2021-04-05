@@ -1,17 +1,67 @@
-<h2>View All Customers</h2>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="width: 100%; position: absolute; left: 0; height: 0;" >Login Page</ion-title>
+  </ion-toolbar>  
+</ion-header>
 
+<ion-content *ngIf="sessionService.getIsLogin() == false">
+  <div *ngIf="infoMessage">
+    {{infoMessage}}
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Customer 1</th>
-        <th>Customer 2</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let customer of customers">
-          <td>{{customer.id}}</td>
-          <td>{{customer.firstName}}</td>
-        </tr>
-    </tbody>
-  </table>
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div>
+    <form #customerLoginForm="ngForm" (ngSubmit)="customerLogin(customerLoginForm)">
+
+      <div style="color: red;">    
+        <div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)" class="errorText">
+          <div *ngIf="inusername.errors.required">
+            Username is required.
+          </div>
+        </div>
+        
+        <div *ngIf="inpassword.invalid && (inpassword.dirty || inpassword.touched || submitted)" class="errorText">
+          <div *ngIf="inpassword.errors.required">
+            Password is required.
+          </div>
+        </div>
+        
+        <div *ngIf="loginErrorMessage" class="errorText">
+          {{loginErrorMessage}}
+        </div>
+          
+      </div>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel"></ion-input>
+        </ion-item>
+    
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32" required="true" #inpassword="ngModel"></ion-input>
+        </ion-item>
+
+        <ion-button color="danger" expand="block" type="submit">Sign In</ion-button>
+    </form> 
+  </div>
+
+  <ion-grid>
+    
+    <ion-row> 
+      <ion-col>
+          <ion-button color="light" (click)="register()">Register New Account</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button color="light" (click)="clear()">Clear</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ion-content>

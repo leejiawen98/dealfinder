@@ -12,12 +12,12 @@ export class Customer extends User
     deals : Deal[] | undefined;
     creditCard: CreditCard | undefined;
 
-    constructor(id?: number, username?: string, password?: string, email?: string, mobileNum?: string, firstName?: string, lastName?: string, eWalletAmount?: number)
+    constructor(id?: number, username?: string, password?: string, email?: string, mobileNum?: string, firstName?: string, lastName?: string)
 	{
         super(id, username, password, email, mobileNum);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eWalletAmount = eWalletAmount;
+        this.eWalletAmount = 0;
 	}
 
 
