@@ -10,7 +10,7 @@ This project also features a JSF Web Application that allows Business Accounts t
 
 View the application demo here: https://www.youtube.com/watch?v=TT3q4UY9E3w
 
-The Ionic mobile application features a QR scanner that allows users to redeem purchased deals, allows consumers to purchase deals using a in-app eWallet 
+The Ionic mobile application (tested on IOS) features a QR scanner that allows users to redeem purchased deals, allows consumers to purchase deals using a in-app eWallet 
 or creditcard and a review system to let users leave a feedback on the deals purchased/redeemed.
 
 
