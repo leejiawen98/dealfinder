@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click))="ngOnDestroy()"></ion-back-button>
+    </ion-buttons>
+  
+    <ion-title>Favourite</ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div *ngIf = "favouritesExist == true">
+    <ion-list *ngFor="let fav of allFavourites; let i = index">
+      <ion-item (click)="goToDeal(i)">
+        <ion-thumbnail slot="start">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{ fav.deal.dealName }}</h3>
+          <p>{{ fav.deal.business.name }}</p>
+        </ion-label>
+        <ion-button (click) = "onClickUnfavourite($event, i);$event.stopPropagation();" fill=“clear” *ngIf="favourited == true">
+          <ion-icon style="font-size: 32px" color="primary" name="heart"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    </div>
+    <div *ngIf = "favouritesExist == false">
+      <p style=" display: flex; align-items: center; justify-content: center; height: 100%;">
+        You do not have any favourite deals at the moment.</p>
+    </div>
+  </ion-content>

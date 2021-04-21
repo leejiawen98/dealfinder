@@ -1,9 +1,18 @@
 ion-header {
-    height: 280px;
-    background-color: #0F4C81;
-    ion-searchbar {
-        border-radius: 20px;
+    ion-toolbar {
+        ion-searchbar {
+            border-radius: 50px;
+            width: 100%;
+            margin-top: 10px;
+         }
+         ion-button {
+             margin-top: 15px;
+         }
     }
+}
+
+ion-slides {
+    height: 30%;
 }
 
 .sub-headers {
@@ -13,7 +22,8 @@ ion-header {
 }
 
 ion-slides {
-    height: 70%;
+    height: 78%;
+    width: 100%;
 }
 
 #category-grid {
@@ -35,3 +45,7 @@ ion-slides {
 .categoryButton {
     background-color: transparent;
 }
+
+ion-select {
+    display: none !important;
+   }

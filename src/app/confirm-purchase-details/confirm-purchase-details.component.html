@@ -1,0 +1,65 @@
+<ion-header>
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button (click) = "close()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title>Confirm Purchase Details</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="text-align: center; background-color:white;">
+    <ion-text>
+      <h3>{{deal.dealName}}</h3>
+      <p style="color: grey; margin-top: 7px;">{{business.name}} ({{business.address}})</p>
+      <p style="color: grey; padding-left: 15px;">Available from: {{startDate | date}} to {{endDate | date}}</p>
+    </ion-text>
+  </div>
+  <div style="margin-top: 15px;background-color:white;">
+    <ion-text style="margin-top: 10px">
+      <ion-item-divider style=" color: #BF3C41; width: 95%; margin: auto;">Description: </ion-item-divider>
+      <p style="color: grey; padding-left: 15px;">{{deal.description}}</p>
+    </ion-text>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-item lines="none">
+      <ion-col >
+          <ion-label style="font-size: 19px;">
+            Product Quantity:
+          </ion-label>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-item lines="none">
+          <button (click) = "decrease()" style="background-color: #BF3C41; color: white; padding: 3px 6px 3px 6px;" ion-button small>-</button>
+          &nbsp;&nbsp;
+          <ion-text>{{productQuantity}}</ion-text>
+          &nbsp;&nbsp;
+          <button (click) = "increase()" style="background-color: #BF3C41; color: white; padding: 3px 6px 3px 6px;"  ion-button small>+</button>
+        </ion-item>
+      </ion-col>
+    </ion-item>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+    <p style="text-align: center; font-weight: bold; ">Total Price: {{totalPrice }} </p>
+  <ion-button (click) = "selectPaymentMethod()" expand="full" color="primary">Select Payment Method</ion-button>
+</ion-toolbar>
+</ion-footer>

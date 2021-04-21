@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Review Deal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../assets/icon/favicon.png">
+    </ion-thumbnail>
+    Create review for {{deal.dealName}}
+  </ion-item>
+  <form #createReviewForm="ngForm" (ngSubmit)="createReview(createReviewForm)">
+    <ion-item lines="full">
+      <ion-label position="floating">Deal Rating</ion-label>
+      <ion-select id="dealRating" name="dealRating" [(ngModel)]="newReview.dealRating" required="true">
+          <ion-select-option *ngFor="let rating of ratingValues" [value]="rating">
+            {{rating}} star
+          </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Review Description</ion-label>
+      <ion-input type="text" id="description" name="description" [(ngModel)]="newReview.description" maxlength="128"
+        required="true"></ion-input>
+    </ion-item>
+
+    <ion-button color="danger" expand="block" type="submit">Create Review</ion-button>
+  </form>
+</ion-content>

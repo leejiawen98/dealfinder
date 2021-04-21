@@ -74,7 +74,12 @@ export class CustomerService
       );
     }
 
-    
+    customerLogin(username: string, password: string): Observable<any> { 
+      return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
 
     private handleError(error: HttpErrorResponse)
     {

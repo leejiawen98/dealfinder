@@ -1,0 +1,19 @@
+ion-content {
+    --ion-background-color: #F5F5F5;
+}
+
+ion-item{
+    --ion-background-color:#fff;
+ }
+
+ .item-avatar  {     
+    width:100% !important;  
+    height : 100% !important;  
+    max-width: 100px !important;  //any size
+    max-height: 100px !important; //any size 
+    }
+
+    ion-item {
+        border-top: none;
+        border-bottom: none;
+     }

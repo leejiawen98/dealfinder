@@ -1,0 +1,119 @@
+<ion-header [translucent]="true" > 
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click))="ngOnDestroy()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary" (click) = "favouriteDeals()">
+      <ion-button *ngIf="favouriteExist == false">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="favouriteExist == true">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{deal.dealName}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-img *ngIf="parentCatName == 'F&B'" src="./assets/icon/foodDeal.jpeg"></ion-img>
+  <ion-img *ngIf="parentCatName == 'Leisure'" src="./assets/icon/Leisure.jpeg"></ion-img>
+  <ion-img *ngIf="parentCatName == 'Beauty'" src="./assets/icon/beauty.jpeg"></ion-img>
+  <ion-img *ngIf="parentCatName == 'Fitness'" src="./assets/icon/fitnessPhoto.png"></ion-img>
+  <ion-img *ngIf="parentCatName == 'Retail'" src="./assets/icon/retail.jpeg"></ion-img>
+
+
+  <div style="margin-top: -15px; padding: 10px; background-color:white;">
+    <ion-text >
+      <h1>{{dealBusiness.name}}: {{deal.dealName}}</h1>
+    </ion-text>
+    <ion-text>
+      <p>{{deal.description}}</p>
+    </ion-text>
+  </div>
+
+  <div style="background-color:white; margin-top: 2px; padding: 10px;">
+    <ion-icon name="alarm-outline"></ion-icon>
+    &nbsp;
+    <ion-text>Redeem from today until {{date | date}} </ion-text>
+  </div>
+
+  <div style="background-color:white; margin-top: -6px; padding-left: 10px;">
+    <h5 style="padding-top: 5px;">Deal Partner</h5>
+    <ion-item class="item item-trns" lines="none">
+      <ion-thumbnail style="background-color: white;" slot="start">
+        <img src="../../assets/icon/background1.png">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{dealBusiness.name}}</h3>
+        <p>{{dealBusiness.address}}</p>
+        <p>{{numOfBusinessDeal}} deals</p>
+      </ion-label>
+    </ion-item>
+
+  </div>
+
+  <br />
+  <br />
+  <div style="background-color:white; margin-top: -12px; padding-left: 10px;">
+    <ion-grid style="margin-top: -20px;">
+      <ion-row style="margin-top: -15px;">
+        <ion-col>
+          <h5 style="padding-top: 5px; background-color:white;">Reviews</h5>
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+          
+        </ion-col>
+        <ion-col>
+          
+        </ion-col>
+        <ion-col style="float: right; align-self:flex-end; font-size: 15px;">
+          <p>{{totalRating}} / 5</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style=" background-color:white;" *ngIf="reviewExist == true" lines="none">
+      <ion-list *ngFor="let review of dealReviews; let i = index">
+        <ion-item style="margin-top: -10px; margin-bottom: -9px;">
+          <ion-avatar slot="start">
+            <img style="width: 100px" src="../../assets/icon/woman.png">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{review.customer.username}}</h3>
+            <p style="word-break: break-all; white-space: normal;">{{review.description}} </p>
+          </ion-label>
+          <ionic5-star-rating style="margin-top: -45px;" #rating
+        activeIcon = "star"
+        defaultIcon = "star-outline"
+        activeColor = "#fdcc0d" 
+        defaultColor = "#989898"
+        readonly="true"
+        rating= {{review.dealRating}}
+        fontSize = "10px"
+        (ratingChanged)="logRatingChange($event)">
+    </ionic5-star-rating>
+        </ion-item>
+      </ion-list>
+      
+    </div>
+      <ion-item *ngIf="reviewExist == false" >
+        There is currently no reviews for this deal.
+        </ion-item>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+  <ion-button (click) = purchaseDeal() expand="full" color="primary">Purchase</ion-button>
+</ion-toolbar>
+</ion-footer>

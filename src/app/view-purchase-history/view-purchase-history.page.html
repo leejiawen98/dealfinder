@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Purchase History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!isEmpty">
+    <ion-list *ngFor="let st of saleTransactions; let i = index">
+      <ion-item button (click)="viewSaleTransactionDetails(i)">
+        <ion-thumbnail slot="start">
+          <img src="../assets/icon/favicon.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{st.deal.dealName}}</h3>
+          <p>Description: {{st.deal.description}}</p>
+          <p>Total Cost: {{st.totalAmount}}</p>
+          <p>Date Purchased: {{st.transactionDateTime}}</p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <div *ngIf="isEmpty" style="text-align:center">
+    <h2 class="item-text-wrap">No Deals Purchased</h2>
+    <ion-button color="danger" (click)="mainmenu()">
+      Buy new Deals
+    </ion-button>
+  </div>
+</ion-content>

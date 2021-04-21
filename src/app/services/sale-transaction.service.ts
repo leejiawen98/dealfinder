@@ -18,11 +18,13 @@ export class SaleTransactionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createNewSaleTransaction(newSaleTransaction: SaleTransaction, customerId: number): Observable<number>
+  createNewSaleTransaction(newSaleTransaction: SaleTransaction, customerId: number, dealId: number): Observable<number>
   {		
 
-    let createSaleTransactionReq: CreateSaleTransactionReq = new CreateSaleTransactionReq(customerId, newSaleTransaction);
+    let createSaleTransactionReq: CreateSaleTransactionReq = new CreateSaleTransactionReq(customerId, newSaleTransaction, dealId);
     
+    console.log(createSaleTransactionReq.customerId);
+
     return this.httpClient.put<number>(this.baseUrl, createSaleTransactionReq, httpOptions).pipe
     (
       catchError(this.handleError)
@@ -48,6 +50,14 @@ export class SaleTransactionService {
   retrieveSaleTransactionDealByDealId(dealId: number): Observable<SaleTransaction>
   {
     return this.httpClient.get<SaleTransaction>(this.baseUrl + "/retrieveSaleTransactionDealByDealId/" + dealId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  retrieveSaleTransactionDealByCustomerId(customerId: number): Observable<SaleTransaction[]>
+  {
+    return this.httpClient.get<SaleTransaction[]>(this.baseUrl + "/retrieveSaleTransactionDealByCustomerId/" + customerId).pipe
     (
       catchError(this.handleError)
     );
