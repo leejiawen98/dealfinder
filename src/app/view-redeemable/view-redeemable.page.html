@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Redeem from {{business.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <app-explore-container name="QR Scanner"></app-explore-container> -->
+  <ion-text *ngIf="!redemptions">You have not purchased any deals from {{business.name}}</ion-text>
+  <ion-card *ngFor="let r of redemptions">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <div style="float:right">
+          R{{r.redemptionId}}
+        </div>
+        <div>
+          {{r.deal.business.name}}
+        </div>
+      </ion-card-subtitle>
+      <ion-card-title>{{r.deal.dealName}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{r.deal.description}}
+      <br/><br/>
+      ${{r.deal.unitPrice}}
+    </ion-card-content>
+    <div>
+      <ion-text style="float:left; margin:20px">{{r.deal.serialNum}}</ion-text>
+      <ion-button style="float:right; margin:20px" color="primary" (click)="redeem(r)">Redeem</ion-button>
+    </div>
+  </ion-card>
+</ion-content>

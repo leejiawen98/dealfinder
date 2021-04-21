@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { CustomerService } from '../services/customer.service';
 import { Customer } from '../models/customer';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -15,46 +16,64 @@ export class RegisterPage implements OnInit {
   newCustomer : Customer;
   customer: Customer;
 
-  submitted : boolean;
-  infoMessage : string;
-  errorMessage : string;
+  errorMessage: string;
 
   constructor(private router: Router,
-              private customerService: CustomerService) 
+              private customerService: CustomerService,
+              private toastController: ToastController) 
   { 
     this.newCustomer = new Customer();
-    this.submitted = false;
-
   }
 
   ngOnInit() {
   }
 
   registerNewCustomer(createCustomerForm: NgForm) {
-    this.submitted = true;
-    
-    console.log(this.newCustomer);
     this.newCustomer.eWalletAmount = 0;
     if (createCustomerForm.valid) {
       this.customerService.createNewCustomer(this.newCustomer).subscribe(
         response => {
-          this.infoMessage = "New customer account successfully created with ID: " + response;
+          this.successToast();
           this.router.navigate(["/login"]); 
         },
         error => {
-          this.infoMessage = null;
-          this.errorMessage = error;
+          this.errorMessage = "Register New Customer Failed!";
+          console.log(error);
+          this.errorToast();
         }
 
       ); 
     } else {
-
+      this.errorMessage = "Create Customer Form Inputs are not valid!";
+      this.errorToast();
     }
   } 
 
   clear() {
     this.newCustomer = new Customer();
-    this.submitted = false;
-    this.errorMessage = null;
+  }
+  
+  goBack() {
+    this.router.navigateByUrl('tabs/tab1');
+  }
+
+  async successToast() {
+    const toast = await this.toastController.create({
+      message: "Registered Successfully!",
+      duration: 2000
+    });
+
+    toast.present();
+
+  }
+
+  async errorToast() {
+    const toast = await this.toastController.create({
+      message: this.errorMessage,
+      duration: 2000
+    });
+
+    toast.present();
+
   }
 }

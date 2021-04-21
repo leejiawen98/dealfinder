@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wallet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment [(ngModel)]="selectedSegment">
+    <ion-segment-button value="ewallet">
+      <ion-label>E-Wallet</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="creditcard">
+      <ion-label>Credit Card</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="selectedSegment == 'ewallet'" style="text-align: center">
+    &nbsp;
+    <ion-card-title>
+      <ion-label>
+        <h1>E-Wallet: ${{customer.eWalletAmount}}</h1>
+      </ion-label>
+      &nbsp;
+    </ion-card-title>
+    <ion-button color="danger" fill="clear" (click)="clickTopUp()">
+      <ion-label>Top up E-Wallet</ion-label>
+    </ion-button>
+  </ion-list>
+
+
+  <ion-list *ngIf="selectedSegment == 'creditcard'" style="text-align: center">
+    <ion-list *ngIf="!creditCard">
+      <h5>No Credit Card Linked with Account</h5>
+      <ion-button color="danger" fill="clear" (click)="goToAddCreditCard()">
+        <ion-label>Add New Credit Card</ion-label>
+      </ion-button>
+    </ion-list>
+
+    <ion-list *ngIf="creditCard">
+      <ion-card>
+        <h5>Credit Card Name: {{creditCard.ccName}}</h5>
+        <h5>Credut Card Number: {{creditCard.ccNum}}</h5>
+        <h5>Credit Card CVV: {{creditCard.cvv}}</h5>
+        <h5>Expiry Date: {{expiryDate}}</h5>
+      </ion-card>
+      <ion-button color="danger" fill="clear" (click)="updateCreditCard()">
+        <ion-label>Update Credit Card Details</ion-label>
+      </ion-button>
+    </ion-list>
+  </ion-list>
+
+</ion-content>

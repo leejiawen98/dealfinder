@@ -41,6 +41,21 @@ export class DealService {
     );
   }
 
+  filterDealByTagId(tagIds: number[]): Observable<Deal[]> {
+    return this.httpClient.get<Deal[]>(this.baseUrl + "/filterDealByTagId/" + tagIds).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
+  retrievePurchasedDealsByCustIdandBizId(custId: number, bizId: number): Observable<Deal[]>
+  {		
+    return this.httpClient.get<Deal[]>(this.baseUrl + "/retrievePurchasedDealsByCustIdandBizId/" + custId + "/" + bizId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse)
   {
     let errorMessage: string = "";

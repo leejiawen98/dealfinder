@@ -3,6 +3,10 @@ ion-header {
         ion-searchbar {
             border-radius: 50px;
             width: 100%;
+            margin-top: 10px;
+         }
+         ion-button {
+             margin-top: 15px;
          }
     }
 }
@@ -41,3 +45,7 @@ ion-slides {
 .categoryButton {
     background-color: transparent;
 }
+
+ion-select {
+    display: none !important;
+   }

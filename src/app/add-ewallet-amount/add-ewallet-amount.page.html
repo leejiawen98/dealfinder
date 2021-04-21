@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="closeMenu()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Top Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-img style="width: 150px; height: 150px; align-items: center; margin: auto;" src="../assets/icon/logo.jpeg"></ion-img>
+  
+  <form #topUpForm="ngForm" (ngSubmit)="topUpEwallet(topUpForm)">
+    <ion-item lines="full">
+      <ion-label position="floating">Enter amount:</ion-label>
+      <ion-input type="text" id="amount" name="amount" [(ngModel)]="amount" required="true"></ion-input>
+    </ion-item>
+
+    <ion-button color="danger" expand="block" type="submit">Top up</ion-button>
+    <ion-button color="secondary" expand="block" (click)="closeMenu()">Cancel</ion-button>
+  </form>
+</ion-content>

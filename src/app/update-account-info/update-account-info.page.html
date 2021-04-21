@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title >Update Account Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #updateAccountInfoForm="ngForm" (ngSubmit)="updateAccountInfo(updateAccountInfoForm)">
+    <div style="color: red;">
+      <div *ngIf="infirstName.invalid && (infirstName.dirty || infirstName.touched || submitted)" class="errorText">
+        <div *ngIf="infirstName.errors.required">
+          First name is required.
+        </div>
+        <div *ngIf="infirstName.errors.minlength">
+          First name must be at least 4 characters long.
+        </div>
+        <div *ngIf="inlastName.errors.maxlength">
+          First name cannot exceed 32 characters.
+        </div>
+      </div>
+      <div *ngIf="inlastName.invalid && (inlastName.dirty || inlastName.touched || submitted)" class="errorText">
+        <div *ngIf="inlastName.errors.required">
+          Last name is required.
+        </div>
+        <div *ngIf="inlastName.errors.minlength">
+          Last name must be at least 4 characters long.
+        </div>
+        <div *ngIf="inlastName.errors.maxlength">
+          Last name cannot exceed 32 characters.
+        </div>
+      </div>
+      <div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)" class="errorText">
+        <div *ngIf="inusername.errors.required">
+          Username is required.
+        </div>
+        <div *ngIf="inusername.errors.minlength">
+          Username must be at least 4 characters long.
+        </div>
+        <div *ngIf="inusername.errors.maxlength">
+          Username cannot exceed 32 characters.
+        </div>
+      </div>
+      <div *ngIf="inpassword.invalid && (inpassword.dirty || inpassword.touched || submitted)" class="errorText">
+        <div *ngIf="inpassword.errors.required">
+          Password is required.
+        </div>
+        <div *ngIf="inpassword.errors.minlength">
+          Password must be at least 4 characters long.
+        </div>
+        <div *ngIf="inpassword.errors.maxlength">
+          Password cannot exceed 32 characters.
+        </div>
+      </div>
+      <div *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)" class="errorText">
+        <div *ngIf="inemail.errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="inemail.errors.maxlength">
+          Email cannot exceed 64 characters.
+        </div>
+      </div>
+
+      <div *ngIf="inmobileNumber.invalid && (inmobileNumber.dirty || inmobileNumber.touched || submitted)" class="errorText">
+        <div *ngIf="inmobileNumber.errors.required">
+          Mobile Number is required.
+        </div>
+        <div *ngIf="inmobileNumber.errors.maxlength">
+          Mobile Number can only contain 8 Numbers.
+        </div>
+      </div>
+    </div>
+
+
+    <ion-item lines="full">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName" minlength="4"
+        maxlength="32" required="true" #infirstName="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName" minlength="4" maxlength="32"
+        required="true" #inlastName="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" id="username" name="username" [(ngModel)]="newCustomer.username" minlength="4" maxlength="32"
+        required="true" #inusername="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" id="password" name="password" [(ngModel)]="newCustomer.password" minlength="4"
+        maxlength="32" required="true" #inpassword="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" id="email" name="email" [(ngModel)]="newCustomer.email" maxlength="64" required="true"
+        #inemail="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Mobile Number</ion-label>
+      <ion-input type="text" id="mobileNum" name="mobileNum" [(ngModel)]="newCustomer.mobileNum" size="8" required="true"
+        #inmobileNumber="ngModel"></ion-input>
+    </ion-item>
+
+    <ion-button color="danger" expand="block" type="submit">Update Account</ion-button>
+  </form>
+
+  <ion-col>
+    <ion-button color="light" (click)="clear()">Clear</ion-button>
+  </ion-col>
+</ion-content>

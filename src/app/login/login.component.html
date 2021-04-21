@@ -3,18 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="goBack()"></ion-back-button>
     </ion-buttons>
-    <ion-title style="width: 100%; position: absolute; left: 0; height: 0;" >Login Page</ion-title>
+    <ion-title >Login Page</ion-title>
   </ion-toolbar>  
 </ion-header>
 
 <ion-content *ngIf="sessionService.getIsLogin() == false">
-  <div *ngIf="infoMessage">
-    {{infoMessage}}
-  </div>
-
-  <div *ngIf="errorMessage">
-    {{errorMessage}}
-  </div>
   <div>
     <form #customerLoginForm="ngForm" (ngSubmit)="customerLogin(customerLoginForm)">
 
@@ -29,10 +22,6 @@
           <div *ngIf="inpassword.errors.required">
             Password is required.
           </div>
-        </div>
-        
-        <div *ngIf="loginErrorMessage" class="errorText">
-          {{loginErrorMessage}}
         </div>
           
       </div>

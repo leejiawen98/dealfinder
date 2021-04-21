@@ -1,0 +1,36 @@
+<ion-header [translucent]="true" > 
+</ion-header>
+
+  <ion-content class="vertical-center">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-buttons slot="start">
+          </ion-buttons>
+          <ion-buttons slot="primary">
+            <ion-button (click) = "close()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Payment Method</ion-title>
+        </ion-toolbar>
+        </ion-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-img style=" margin: auto; height: 80px; width: 80px;"src="./assets/icon/ewallet.png"></ion-img>
+        </ion-col>
+        <ion-col>
+          <ion-img style=" margin: auto; height: 80px; width: 80px;"src="./assets/icon/credit-card.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="align-items: center; text-align: center;">
+          <ion-button (click) = "selectedEWallet()">E-Wallet</ion-button>
+        </ion-col>
+        <ion-col style="align-items: center; text-align: center;">
+          <ion-button (click) = "selectedCreditCard()">Credit Card</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-content>

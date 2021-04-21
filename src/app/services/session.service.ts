@@ -36,11 +36,7 @@ export class SessionService {
 
 	setCurrentCustomer(currentCustomer: Customer | null): void
 	{	
-		if(currentCustomer = null) {
-			sessionStorage.currentCustomer = null;
-		} else {
-			sessionStorage.currentCustomer = JSON.stringify(currentCustomer);
-		}
+		sessionStorage.currentCustomer = JSON.stringify(currentCustomer);
 	}
 
 

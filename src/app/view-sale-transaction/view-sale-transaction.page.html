@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Sale Transaction Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="../assets/icon/favicon.png">
+    </ion-thumbnail>
+    <ion-label>
+      <h3>Deal Name: {{saleTransaction.deal.dealName}}</h3>
+      <h3>Deal Description: {{saleTransaction.deal.description}}</h3>
+      <h3>Unit Price: {{saleTransaction.price}}</h3>
+      <h3>Bought Quantity: {{saleTransaction.quantity}}</h3>
+      <h3>Total Amount: {{saleTransaction.totalAmount}}</h3>
+      <h3>Date Purchased: {{saleTransaction.transactionDateTime}}</h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-footer>
+    <ion-toolbar position="bottom">
+      <ion-button (click)=redeemDeal() expand="full" color="danger">Redeem Deal</ion-button>
+
+      <ion-button (click)=reviewDeal() expand="full" color="secondary">Review Deal</ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

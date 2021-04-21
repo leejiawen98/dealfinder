@@ -6,6 +6,7 @@ import { fromEventPattern } from 'rxjs';
 import { Customer } from '../models/customer';
 import { CustomerService } from '../services/customer.service';
 import { SessionService } from '../services/session.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +15,18 @@ import { SessionService } from '../services/session.service';
 })
 export class LoginComponent implements OnInit {
 
-  submitted : boolean;
+  customer : Customer;
   username : string;
   password : string;
-  loginError: boolean;
-  infoMessage : string;
+
   errorMessage : string;
 
   constructor(private router: Router,
               public sessionService: SessionService,
-              private customerService: CustomerService)
+              private customerService: CustomerService,
+              private toastController: ToastController)
   {
-    this.loginError = false;  
-    this.submitted = false;
+
   }
 
   ngOnInit() {
@@ -35,39 +35,39 @@ export class LoginComponent implements OnInit {
   clear() {
     this.username = "";
     this.password = "";
-    this.infoMessage = null;
     this.errorMessage = null;
   }
 
   customerLogin(customerLoginForm: NgForm) {
-    this.submitted = true;
-
     if (customerLoginForm.valid) {
       this.sessionService.setUsername(this.username);
-      this.sessionService.setPassword(this.password);
-      
+      this.sessionService.setPassword(this.password);      
       this.customerService.customerLogin(this.username, this.password).subscribe(
         response => {										
-          let customer: Customer = response;
-          
+          let customer: Customer = response;          
           if(customer != null)
-          {
-            console.log(customer);
+          {            
             this.sessionService.setIsLogin(true);
             this.sessionService.setCurrentCustomer(customer);	
-            this.loginError = false;				
-            this.infoMessage = "Login Successfully."
-            this.router.navigateByUrl('tabs/tab1');
+
+            console.log("Username: " + this.sessionService.getUsername());
+            console.log("Password: " + this.sessionService.getPassword());
+            console.log(this.sessionService.getCurrentCustomer());
+
+            this.successToast();
+            this.goBack();
+            
           }
           else
           {
-            this.loginError = true;
-            this.infoMessage = "Login Failed."
+            this.errorMessage = "Customer does not exist!";
+            this.errorToast();
           }
         },
         error => {
-          this.loginError = true;
-          this.errorMessage = error
+          this.errorMessage = "Customer Login Failed";
+          console.log(error);
+          this.errorToast();
         }
       );
     } else {
@@ -84,4 +84,23 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('tabs/tab1');
   }
 
+
+  async successToast() {
+    const toast = await this.toastController.create({
+      message: "Successfully logged in!",
+      duration: 2000
+    });
+
+    toast.present();
+
+  }
+  async errorToast() {
+    const toast = await this.toastController.create({
+      message: this.errorMessage,
+      duration: 3000
+    });
+
+    toast.present();
+
+  }
 }

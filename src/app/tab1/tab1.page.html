@@ -24,9 +24,11 @@
       </ion-slide>
     </ion-slides>
   <div>
-    <p class="sub-headers">Category</p>
 
     <ion-grid id="category-grid">
+      <ion-row >
+        <p class="sub-headers">Category</p>
+      </ion-row>
       <ion-row>
         <ion-col>
           <div (click) = "moveToViewCategory(1)" >
@@ -41,7 +43,7 @@
           </div>
         </ion-col>
         <ion-col>
-          <div (click) = "moveToViewCategory()">
+          <div (click) = "moveToViewCategory(9)">
             <ion-img class="icon" src="../assets/icon/massage.png"></ion-img>
             <ion-label class="icon-label">Massage</ion-label>
           </div>
@@ -76,6 +78,39 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p class="sub-headers">Deals Available</p>
+        </ion-col>
+        <ion-col>
+          <ion-button (click) = "clickFilter()" style="font-size: 15px; float:right;" fill="clear" color="primary">
+            <ion-icon name="filter-outline"></ion-icon>
+          </ion-button>
+          <ion-select (ionChange)="filterDeals($event)" multiple="true" [(ngModel)] = "selectedTags" #mySelect>
+            <ion-select-option [value]="tags.tagId" *ngFor="let tags of allTags"> {{tags.name}} </ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div *ngIf="selectedTagsDeals.length != 0" style="margin-top: -20px;" >
+      <ion-list *ngFor="let deal of selectedTagsDeals; let i = index">
+        <ion-item (click) = "goToDealMain(i)">
+          <ion-thumbnail slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{deal.dealName}}</h3>
+            <p>{{deal.business.name}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngIf="selectedTagsDeals.length == 0">
+      <h3 style="text-align: center;">No available filter results</h3>
+    </div>
   </div>
 </div>
 <div *ngIf="this.searchVal != ''">

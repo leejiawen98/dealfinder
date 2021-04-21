@@ -11,18 +11,35 @@ import { SessionService } from '../services/session.service';
 })
 export class Tab3Page {
 
-  customer: Customer;
+  customer: Customer; 
 
-  constructor(private router: Router, public sessionService: SessionService, private alertCtrl: AlertController) {
+  constructor(private router: Router, 
+              private sessionService: SessionService, 
+              private alertCtrl: AlertController) {
 
-    if (this.sessionService.getIsLogin) {
-      this.customer = this.sessionService.getCurrentCustomer();
-    }
   }
 
+  ngOnInit() {
+    if (this.sessionService.getIsLogin) {
+      console.log("Customer is logged in");
+      this.customer = this.sessionService.getCurrentCustomer();
+      console.log(this.customer);
+    } 
+  }
+
+  ngOnChanges() {
+    this.customer = this.sessionService.getCurrentCustomer();
+
+  }
   viewAccountInfo() {
     console.log("Navigate to View Account Info Page");
     this.router.navigate(["/view-account-info"]);
+  }
+
+
+  viewAllRedeemables()
+  {
+    this.router.navigate(["/view-all-redeemables"]);
   }
 
   viewPurchaseHistory() {
@@ -30,6 +47,16 @@ export class Tab3Page {
     this.router.navigate(["/view-purchase-history"]);
   }
 
+  viewFavListings() {
+    console.log("Navigate to View Favourite Listings Page");
+    this.router.navigate(["/view-favourite-listings"]);
+  }
+
+  topUpEwallet() {
+    console.log("Navigate to View Favourite Listings Page");
+    this.router.navigate(["/top-up-ewallet"]);
+  }
+ 
   async customerLogout() {
     const alert = await this.alertCtrl.create({
       header: 'Logout',
@@ -41,6 +68,7 @@ export class Tab3Page {
           handler: () => {
             this.sessionService.setIsLogin(false);
             this.sessionService.setCurrentCustomer(null);
+            this.customer = null;
             this.router.navigateByUrl('tabs/tab1');
           }
         },
@@ -56,3 +84,6 @@ export class Tab3Page {
     await alert.present();
   }
 }
+
+
+

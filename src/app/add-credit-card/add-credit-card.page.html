@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Credit Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #addCreditCardForm="ngForm" (ngSubmit)="addCreditCard(addCreditCardForm)">
+    <ion-item lines="full">
+      <ion-label position="floating">Credit Card Number</ion-label>
+      <ion-input type="type" id="ccNum" name="ccNum" [(ngModel)]="ccNum" size="16" required="true"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">CVV</ion-label>
+      <ion-input type="type" id="cvv" name="cvv" [(ngModel)]="cvv" size="3" required="true"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Name on Credit Card</ion-label>
+      <ion-input type="type" id="ccName" name="ccName" [(ngModel)]="ccName" maxlength="32" required="true"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Expiry Date</ion-label>
+      <ion-datetime displayFormat="MMM YYYY" pickerFormat="MMM YYYY" id="expiryDate" name="expiryDate" min="2021" max="2050" [(ngModel)]="expiryDate" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+
+    <ion-button color="danger" expand="block" type="submit">Add New Credit Card</ion-button>
+  </form>
+</ion-content>

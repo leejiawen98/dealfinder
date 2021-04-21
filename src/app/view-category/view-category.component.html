@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button (click))="ngOnDestroy()"></ion-back-button>
     </ion-buttons>
-    <ion-title style="width: 100%; position: absolute; left: 0; height: 0;">
+    <ion-title>
       {{category.name}}
     </ion-title>
   </ion-toolbar>
@@ -19,24 +19,15 @@
             <ion-thumbnail slot="start">
               <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
             </ion-thumbnail>
-            <ion-label>{{deal.dealName}}</ion-label>
+            <ion-label>          
+              <h3>{{ deal.dealName }}</h3>
+              <p>{{ deal.business.name }}</p>
+            </ion-label>
+            <p>${{deal.unitPrice}}</p>
           </ion-item>
         </ion-list>
       </div>
     </ion-item-group>
-<!-- 
-      <ion-list-header>
-        {{subLeaf.leafCategory.name}}
-      </ion-list-header>
-      <div *ngIf="subLeaf.existDeal == true">
-        <ion-list *ngFor="let deal of catDeals[i].dealsAvail; let j = index">
-            <ion-item>
-              <ion-label (click) = "goToDeal(i,j)">
-                <h2>{{deal.dealName}}</h2>
-              </ion-label>
-            </ion-item>
-        </ion-list>
-      </div> -->
   </ion-list>
 
 </ion-content>
